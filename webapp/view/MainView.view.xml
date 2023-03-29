@@ -1,6 +1,23 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="logaligroup.employees.controller.MainView" displayBlock="true">
+<mvc:View controllerName="logaligroup.employees.controller.MainView" 
+          displayBlock="true"
+          xmlns="sap.m"
+          xmlns:mvc="sap.ui.core.mvc"> 
+          
     <Page id="page" title="{i18n>title}">
-        <content><Text xmlns="sap.m" text="Hello World" id="text2"/>
-        </content>
+    <content><HBox width="100%" id="hbox0" alignItems="Center">
+            <items>
+                <Label text="{i18n>labelEmployee}" labelFor="inputEmployee" width="100%" id="labelEmployee" class="sapUiSmallMargin"/>
+                <Input xmlns="sap.m" id="inputEmployee" maxLength="6" width="200px" class="sapUiSmallMarginend" liveChange="onValidate"/>
+                <Label text="{i18n>labelCountry}" labelFor="slCountry" width="100%" id="labelCountry" class="sapUiSmallMargin" visible="false"/>
+                <Select xmlns="sap.m" id="slCountry" forceSelection="false" visible="false">
+                    <items>
+                        <core:Item xmlns:core="sap.ui.core" key="US" text="{i18n>countryUS}" id="item0"/>
+                        <core:Item xmlns:core="sap.ui.core" key="UK" text="{i18n>countryUK}" id="item1"/> 
+                        <core:Item xmlns:core="sap.ui.core" key="ES" text="{i18n>countryES}" id="item2"/>     
+                    </items>
+                </Select>
+            </items>
+        </HBox>
+    </content>
     </Page>
 </mvc:View>
