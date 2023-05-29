@@ -1,3 +1,9 @@
+#btp-bas-001
+
+Curso de Logali. SAP Fiori Desarrollo de aplicaciones con SAPUI5 Avanzado a Experto
+
+Proyecto: aplicación de empleados
+
 ## Application Details
 |               |
 | ------------- |
