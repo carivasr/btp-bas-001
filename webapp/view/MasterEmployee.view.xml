@@ -1,4 +1,4 @@
-<mvc:View controllerName="logaligroup.employees.controller.MainView" 
+<mvc:View controllerName="logaligroup.employees.controller.MasterEmployee" 
           displayBlock="true"
           xmlns="sap.m"
           xmlns:mvc="sap.ui.core.mvc"
@@ -6,7 +6,7 @@
           
     <Page id="page" title="{i18n>title}">
     <content>
-        <HBox width="100%" id="hbox0" alignItems="Center">
+        <HBox width="100%" id="hbox0" alignItems="Center" wrap="Wrap">
             <items>
                 <Label text="{i18n>labelEmployee}" labelFor="inputEmployee" width="100%" id="labelEmployee" class="sapUiSmallMargin"/>
                 <Input xmlns="sap.m" id="inputEmployee" value="{jsonCountries>/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd"/>

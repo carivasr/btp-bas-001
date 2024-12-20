@@ -13,28 +13,7 @@ sap.ui.define([
         "use strict";
 
         function onInit() {
-
-            var oView = this.getView();
-            //var i18nBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-
-            var oJSONModelEmpl = new sap.ui.model.json.JSONModel();
-            oJSONModelEmpl.loadData("./localService/mockdata/Employees.json", false);
-            oView.setModel(oJSONModelEmpl, "jsonEmployees");
-
-            var oJSONModelCountries = new sap.ui.model.json.JSONModel();
-            oJSONModelCountries.loadData("./localService/mockdata/Countries.json", false);
-            oView.setModel(oJSONModelCountries, "jsonCountries");
-
-            var oJSONModelConfig = new sap.ui.model.json.JSONModel({
-                visibleID: true,
-                visibleName: true,
-                visibleCountry: true,
-                visibleCity: false,
-                visibleBtnShowCity: true,
-                visibleBtnHideCity: false
-            });
-            oView.setModel(oJSONModelConfig, "jsonModelConfig");
-
+            this._bus = sap.ui.getCore().getEventBus();
         };
 
         function onFilter() {
@@ -155,9 +134,9 @@ sap.ui.define([
             columnListItem.addCell(cellShipAddress);
 
             var oBindingInfo = {
-                model : "jsonEmployees",
-                path : "Orders",
-                template : columnListItem
+                model: "jsonEmployees",
+                path: "Orders",
+                template: columnListItem
             };
 
             newTableJSON.bindAggregation("items", oBindingInfo);
@@ -167,7 +146,12 @@ sap.ui.define([
 
         };
 
-        var Main = Controller.extend("logaligroup.employees.controller.MainView", {});
+        function showEmployee(oEvent) {
+            var path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
+            this._bus.publish("flexible", "showEmployee", path);
+        };
+
+        var Main = Controller.extend("logaligroup.employees.controller.MasterEmployee", {});
 
         Main.prototype.onValidate = function () {
             var inputEmployee = this.byId("inputEmployee");
@@ -189,6 +173,7 @@ sap.ui.define([
         Main.prototype.onShowCity = onShowCity;
         Main.prototype.onHideCity = onHideCity;
         Main.prototype.showOrders = showOrders;
+        Main.prototype.showEmployee = showEmployee;
         return Main;
 
     });
