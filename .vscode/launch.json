@@ -2,29 +2,31 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Start employees-config1",
+      "name": "btp-bas-001-config1",
+      "type": "node",
+      "request": "launch",
       "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
       "runtimeArgs": [
         "fiori",
         "run"
       ],
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "npx",
       "args": [
         "--open",
         "index.html"
       ],
-      "windows": {
-        "runtimeExecutable": "npx.cmd"
-      },
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",
       "outputCapture": "std",
       "env": {
-        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/employees\"}",
-        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"destination\":\"Northwind\",\"path\":\"/V2\"}]",
-        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/btp-bas-001\"}",
+        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"path\":\"/sap\",\"url\":\"http://erp13.sap4practice.com:9037\",\"client\":\"001\",\"destination\":\"logaligroupERP\"},{\"path\":\"/V2\",\"url\":\"https://services.odata.org\",\"destination\":\"Northwind\"}]",
+        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_UI5_VERSION": "1.134.1",
+        "FIORI_TOOLS_UI5_URI": "https://ui5.sap.com"
       }
     }
   ]

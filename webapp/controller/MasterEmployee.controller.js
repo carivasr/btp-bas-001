@@ -41,7 +41,7 @@ sap.ui.define([
 
         function showPostalCode(oEvent) {
             var itemPressed = oEvent.getSource();
-            var oContext = itemPressed.getBindingContext("jsonEmployees");
+            var oContext = itemPressed.getBindingContext("odataNorthwind");
             var objectContext = oContext.getObject();
 
             sap.m.MessageToast.show(objectContext.PostalCode);
@@ -67,13 +67,13 @@ sap.ui.define([
             ordersTable.destroyItems();
 
             var itemPressed = oEvent.getSource();
-            var oContext = itemPressed.getBindingContext("jsonEmployees");
+            var oContext = itemPressed.getBindingContext("odataNorthwind");
             var objectContext = oContext.getObject();
             var orders = objectContext.Orders;
 
             var ordersItems = [];
 
-            for (var i in orders) {
+             for (var i in orders) {
                 ordersItems.push(new sap.m.ColumnListItem({
                     cells: [
                         new sap.m.Label({ text: orders[i].OrderID }),
@@ -83,7 +83,7 @@ sap.ui.define([
                 }))
             }
 
-            var newTable = new sap.m.Table({
+             var newTable = new sap.m.Table({
                 width: "auto",
                 columns: [
                     new sap.m.Column({ header: new sap.m.Label({ text: "{i18n>orderID}" }) }),
@@ -91,7 +91,7 @@ sap.ui.define([
                     new sap.m.Column({ header: new sap.m.Label({ text: "{i18n>shipAddress}" }) })
                 ],
                 items: ordersItems
-            }).addStyleClass("sapUiSmallMargin");
+            }).addStyleClass("sapUiSmallMargin"); 
 
             ordersTable.addItem(newTable);
 
@@ -101,7 +101,7 @@ sap.ui.define([
             newTableJSON.setWidth("auto");
             newTableJSON.addStyleClass("sapUiSmallMargin");
 
-            var columnOrderID = new sap.m.Column();
+             var columnOrderID = new sap.m.Column();
             var labelOrderID = new sap.m.Label();
             labelOrderID.bindProperty("text", "i18n>orderID");
             columnOrderID.setHeader(labelOrderID);
@@ -122,32 +122,32 @@ sap.ui.define([
             var columnListItem = new sap.m.ColumnListItem();
 
             var cellOrderID = new sap.m.Label();
-            cellOrderID.bindProperty("text", "jsonEmployees>OrderID");
+            cellOrderID.bindProperty("text", "odataNorthwind>OrderID");
             columnListItem.addCell(cellOrderID);
 
             var cellFreight = new sap.m.Label();
-            cellFreight.bindProperty("text", "jsonEmployees>Freight");
+            cellFreight.bindProperty("text", "odataNorthwind>Freight");
             columnListItem.addCell(cellFreight);
 
             var cellShipAddress = new sap.m.Label();
-            cellShipAddress.bindProperty("text", "jsonEmployees>ShipAddress");
+            cellShipAddress.bindProperty("text", "odataNorthwind>ShipAddress");
             columnListItem.addCell(cellShipAddress);
 
             var oBindingInfo = {
-                model: "jsonEmployees",
+                model: "odataNorthwind",
                 path: "Orders",
                 template: columnListItem
             };
 
             newTableJSON.bindAggregation("items", oBindingInfo);
-            newTableJSON.bindElement("jsonEmployees>" + oContext.getPath());
+            newTableJSON.bindElement("odataNorthwind>" + oContext.getPath());
 
             ordersTable.addItem(newTableJSON);
 
         };
 
         function showEmployee(oEvent) {
-            var path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
+            var path = oEvent.getSource().getBindingContext("odataNorthwind").getPath();
             this._bus.publish("flexible", "showEmployee", path);
         };
 
